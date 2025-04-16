@@ -65,7 +65,7 @@ conn.commit()
 c.execute('CREATE TABLE IF NOT EXISTS haberler(trend INTEGER,title TEXT,url TEXT,resim TEXT,kaynak TEXT,tarih INTEGER)')
 conn.commit()
 
-c.execute('SELECT * FROM haberler LIMIT 100')
+c.execute('SELECT trend,title,kaynak,tarih haberler LIMIT 100')
 sonuc=c.fetchall()()
 
-st.table(sonuc)
+st.dataframe(sonuc)
