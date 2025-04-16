@@ -65,7 +65,14 @@ conn.commit()
 c.execute('CREATE TABLE IF NOT EXISTS haberler(trend INTEGER,title TEXT,url TEXT,resim TEXT,kaynak TEXT,tarih INTEGER)')
 conn.commit()
 
+trendler = trendgetir()
+for t in trendler:
+    id = trendekle(t['title'], t['trafik'])
+    haberler = t['haberler']
+    for h in haberler:
+        haberekle(id, h['title'], h['url'], h['resim'], h['kaynak'])
+
 c.execute('SELECT trend,title,kaynak,tarih haberler LIMIT 100')
 sonuc=c.fetchall()()
 
-st.dataframe(sonuc)
+st.table(sonuc)
